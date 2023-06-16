@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+    gptlink:
+      network_mode: hosting_running_network
+      restart: always
+      image: overnick/gptlink
+      ports:
+        - '8040:80'
+      environment:
+        - TZ=Asia/Shanghai
+        - DB_HOST=192.168.2.99
+        - DB_DATABASE=gptlink
+        - DB_USERNAME=root
+        - DB_PASSWORD=root@123
+        - REDIS_HOST=192.168.2.99
+        - REDIS_PORT=6379
+        - JWT_SECRET=wY3f28d8Wq4md2dNuXPHEdUccv2YWbKf
+        - OPENAI_HOST=api.openai.com
+        - OPENAI_PORT=443
+        - OPENAI_PROXY_HOST=192.168.2.21
+        - OPENAI_PROXY_PORT=7890
+        - ADMIN_USERNAME=admin
+        - ADMIN_PASSWORD=admin
+      container_name: gptlink
