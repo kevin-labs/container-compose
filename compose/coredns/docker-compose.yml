@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+    coredns:
+        build: .
+        container_name: coredns
+        restart: always
+        environment:
+           - 'TZ=Asia/Shanghai'
+        expose:
+            - '53'
+            - '53/udp'
+        ports:
+            - '53:53'
+            - '53:53/udp'
+        volumes:
+            - './config:/etc/coredns'
