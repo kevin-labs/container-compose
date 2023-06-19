@@ -1,0 +1,29 @@
+version: "3"
+services:
+    s3fs:
+        privileged: true
+        image: efrecon/s3fs:1.86
+        container_name: s3fs
+        restart: always
+        environment:
+            - AWS_S3_BUCKET=new-bucket-f3e4b99d
+            - AWS_S3_ACCESS_KEY_ID=H5ZENKVEPYI2XNWI1Y4D
+            - AWS_S3_SECRET_ACCESS_KEY=G9lqXalK7y5eZKg1hLwjkTqaklBiq5BLOfCj2ccB
+            - AWS_S3_URL=https://del1.vultrobjects.com
+        volumes:
+            - ./uploads:/opt/s3fs/bucket:shared
+
+    filebrowser:
+        volumes:
+            - ./uploads:/srv
+            - ./database.db:/database.db
+            - ./.filebrowser.json:/.filebrowser.json
+        ports:
+            - '9080:80'
+        image: filebrowser/filebrowser
+        restart: always
+        container_name: filebrowser
+        depends_on:
+            - s3fs
+        links:
+            - s3fs

@@ -18,7 +18,7 @@ https://coredns.io/
 docker run -it --rm \
 --name coredns \
 -v ~/docker-app/coredns/coredns:/root \
--p 192.168.20.1:53:53/udp \
+-p 172.17.0.1:53:53/udp \
 coredns/coredns -conf /root/Corefile
 ```
 
@@ -29,7 +29,7 @@ docker run -d \
 --name coredns \
 --restart=always \
 -v ~/docker-app/coredns/coredns:/root \
--p 192.168.20.1:53:53/udp \
+-p 172.17.0.1:53:53/udp \
 coredns/coredns -conf /root/Corefile
 ```
 
