@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  spark:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spark:latest
+    environment:
+      - 'TZ=Asia/Shanghai'
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./spark/config.json:/config.json
+    container_name: spark-rat

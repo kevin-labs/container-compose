@@ -1,0 +1,12 @@
+{
+    "listen": ":8000",
+    "salt": "123456abcdef",
+    "auth": {
+        "admin": "admin@123"
+    },
+    "log": {
+        "level": "info",
+        "path": "./logs",
+        "days": 7
+    }
+}
