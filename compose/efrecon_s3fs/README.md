@@ -40,4 +40,21 @@ services:
 docker run -v ~/docker-app/s3fs/uploads:/srv -p 9080:80 filebrowser/filebrowser
 
 docker run --rm --name=files -v ~/docker-app/s3fs/uploads:/srv -p 9080:80 filebrowser/filebrowser
+
+docker run -it --rm filebrowser/filebrowser
 ```
+
+docker run -it --rm \
+--name s3fs-web \
+-p 8080:80 \
+-v ~/docker-app/s3fs/_uploads:/usr/share/nginx/html:ro \
+nginx:1.23-alpine
+
+docker run -it --rm \
+--name s3fs-web \
+-p 8080:80 \
+-v ~/docker-app/s3fs/nginx.conf:/etc/nginx/nginx.conf \
+-v ~/docker-app/s3fs/uploads:/usr/share/nginx/html:ro \
+nginx:1.23-alpine
+
+https://stackoverflow.com/questions/56997394/s3fs-volume-exposed-via-nginx

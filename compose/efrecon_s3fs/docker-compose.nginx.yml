@@ -6,7 +6,7 @@ services:
         container_name: s3fs
         restart: always
         environment:
-            - 'TZ=Asia/Shanghai'
+            - TZ=Asia/Shanghai
             - PUID=0
             - PGID=0
             - UMASK=022
@@ -19,14 +19,21 @@ services:
         volumes:
             - ./uploads:/opt/s3fs/bucket:shared
 
-    tinyfilemanager:
+    web:
         volumes:
-            - /uploads:/var/www/html/data
+            - ./uploads:/usr/share/gninx/html:ro
         ports:
-            - '9081:80'
+            - '9080:80'
+        image: nginx:1.23-alpine
         restart: always
-        container_name: tinyfilemanager
-        image: 'tinyfilemanager/tinyfilemanager:master'
+        container_name: s3fs-web
+        environment:
+            - TZ=Asia/Shanghai
+            - PUID=0
+            - PGID=0
+            - UMASK=022
+            - UID=0
+            - GID=0
         depends_on:
             - s3fs
         links:

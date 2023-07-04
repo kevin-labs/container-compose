@@ -6,6 +6,12 @@ services:
         container_name: s3fs
         restart: always
         environment:
+            - 'TZ=Asia/Shanghai'
+            - PUID=0
+            - PGID=0
+            - UMASK=022
+            - UID=0
+            - GID=0
             - AWS_S3_BUCKET=new-bucket-f3e4b99d
             - AWS_S3_ACCESS_KEY_ID=H5ZENKVEPYI2XNWI1Y4D
             - AWS_S3_SECRET_ACCESS_KEY=G9lqXalK7y5eZKg1hLwjkTqaklBiq5BLOfCj2ccB
