@@ -1,0 +1,14 @@
+version: '3'
+services:
+
+  supervisord:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: supervisord-golang:latest
+    environment:
+      - 'TZ=Asia/Shanghai'
+    network_mode: host
+    volumes:
+      - ./supervisord.conf:/supervisord.conf
+    container_name: supervisord-golang
